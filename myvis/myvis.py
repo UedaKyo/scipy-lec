@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 plt.axes([0.001, 0.001, 0.998, 0.998])
 
 #データの読み込み
-data = np.loadtxt('point.txt', dtype='str')
+data = np.loadtxt('point2.txt', dtype='str')
 
 #print(data)
 
@@ -74,6 +74,7 @@ for x, y1, y2 in zip(X, income_sum, expense_sum):
 #グラフの詳細設定
 plt.xlim(0, len(date))
 plt.xticks([1, 5, 10, 15, 20, 25, 30])
+plt.xlabel("date")
 plt.ylim(-max(expense.sum(axis=1))*1.1, max(income.sum(axis=1))*1.1)
 plt.yticks(())
 
@@ -84,8 +85,9 @@ ax.spines['left'].set_color('none')
 ax.spines['top'].set_color('none')
 ax.xaxis.set_ticks_position('bottom')
 ax.spines['bottom'].set_position(('data',0))
+ax.xaxis.set_label_coords(1, .5)
 
-plt.legend(loc="upper right")
+plt.legend(loc="upper left", bbox_to_anchor = (1.01, 1))
 
 # 画像として保存
 plt.savefig("pointglaph.png")
