@@ -1,0 +1,10 @@
+type	point/day	time	totalpoint	getday
+lottely	2.451612903	8.5	76	31
+application	13.16129032	5	408	31
+rewordpoint	8.916666667	0	107	12
+enteringshop	8.80952381	2	185	21
+campain	28.05128205	0	1094	39
+advertising	8.35483871	3	259	31
+usingcard	30.5	0	854	28
+mailmagazine	4.285714286	0.857142857	90	21
+questionnaire	8.82	2.5	441	50

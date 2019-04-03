@@ -1,16 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-plt.axes([0.001, 0.001, 0.998, 0.998])
-
 #データの読み込み
-data = np.loadtxt('point2.txt', dtype='str')
+data = np.loadtxt('pointex.txt', dtype='str')
 
 #print(data)
 
 #データを日付と収入と支出に分ける
-splited_detail = np.hsplit(data[0],[1,8])
-splited_data = np.hsplit(data[1:],[1,8])
+splited_detail = np.hsplit(data[0],[1,3])
+splited_data = np.hsplit(data[1:],[1,3])
 
 #print(splited_data)
 
@@ -23,8 +21,8 @@ income = splited_data[1].astype(np.int)
 expense = splited_data[2].astype(np.int)
 
 #色の定義
-incolors = ['r', 'g', 'b', 'y', 'c', 'm', 'navy', 'pink']
-excolors = ['k']
+incolors = ['r','g']
+excolors = ['b']
 
 #x軸
 X = np.arange(len(date))
@@ -38,7 +36,7 @@ for i in range(income.shape[1]):
         income[:, i],           #y軸(収入)
         bottom = bottoms,       #バーが始まる高さ(積み上げ用)
         color = incolors[i],    #色
-        alpha = .5,             #色の薄さ
+        alpha = .5,            #色の薄さ
         edgecolor = 'white',    #枠の色
         label = indetail[i]     #ラベル
     )
@@ -55,7 +53,7 @@ for i in range(expense.shape[1]):
         -expense[:, i],         #y軸(支出)
         bottom = -bottoms,      #バーが始まる高さ(積み上げ用)
         color = excolors[i],    #色
-        alpha = .5,             #色の薄さ
+        alpha = .5,            #色の薄さ
         edgecolor = 'white',    #枠の色
         label = exdetail[i]     #ラベル
     )
@@ -72,10 +70,9 @@ for x, y1, y2 in zip(X, income_sum, expense_sum):
         plt.text(x, -y2 - 0.05, '%d' %y2, ha='center', va='top')
 
 #グラフの詳細設定
-plt.xlim(0, len(date))
-plt.xticks([1, 5, 10, 15, 20, 25, 30])
-plt.xlabel("date")
-plt.ylim(-max(expense.sum(axis=1))*1.1, max(income.sum(axis=1))*1.1)
+plt.xlim(-.5, len(date))
+plt.xticks(X, date)
+plt.ylim(-max(expense.sum(axis=0))*1.1, max(income.sum(axis=0))*1.1)
 plt.yticks(())
 
 #x軸の作成
@@ -85,11 +82,8 @@ ax.spines['left'].set_color('none')
 ax.spines['top'].set_color('none')
 ax.xaxis.set_ticks_position('bottom')
 ax.spines['bottom'].set_position(('data',0))
-ax.xaxis.set_label_coords(1, .5)
 
-plt.legend(loc="upper left", bbox_to_anchor = (1.01, 1))
+plt.legend(loc="upper right")
 
-# 画像として保存
-plt.savefig("pointglaph.png")
 
 plt.show()

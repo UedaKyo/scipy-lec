@@ -1,0 +1,4 @@
+day	credit	etcetra	buy
+1	0	20	0
+2	400	5	0
+3	0	30	300
